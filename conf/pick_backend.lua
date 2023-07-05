@@ -14,7 +14,7 @@ local function pick_backend(txn)
   local picked_backend_count = -1
 
   for backend_name, v in pairs(core.backends) do
-    -- Backend match with pg_backend_name
+    -- Backend match with pg_backend_name_prefix
     if string.match(backend_name, pg_backend_name_prefix) then
       if backend_name ~= 'MASTER' then
         for server_name, server in pairs(v.servers) do
@@ -79,7 +79,7 @@ local function pick_backend(txn)
             end
             -- close connection to database
             sh_node:disconnect()
-            -- close tpc connection
+            -- close tcp connection
             tcp:close()
           end
         end
