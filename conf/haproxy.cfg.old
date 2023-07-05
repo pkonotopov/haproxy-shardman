@@ -44,7 +44,7 @@ backend shardman_node01
     log global
     fullconn 200
     mode tcp
-    server shrn1 shrn1:5432 check port 5432
+    server sd01 sd01:5432 check port 5432
 
 backend shardman_node02
     option pgsql-check user postgres
@@ -52,7 +52,7 @@ backend shardman_node02
     log global
     fullconn 200
     mode tcp
-    server shrn1 shrn1:5433 check port 5433
+    server sd02 sd02:5432 check port 5432
 
 backend shardman_node03
     option pgsql-check user postgres
@@ -60,7 +60,7 @@ backend shardman_node03
     log global
     fullconn 200
     mode tcp
-    server shrn2 shrn2:5432 check port 5432
+    server sd03 sd03:5432 check port 5432
 
 backend shardman_node04
     option pgsql-check user postgres
@@ -68,4 +68,4 @@ backend shardman_node04
     log global
     fullconn 200
     mode tcp 
-    server shrn2 shrn2:5433 check port 5433
+    server sd04 sd04:5432 check port 5432
