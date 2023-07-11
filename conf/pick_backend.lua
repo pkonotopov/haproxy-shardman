@@ -7,8 +7,14 @@ local function pick_backend(txn)
   -- local pg_backend_name_prefix = 'shardman_node'
   -- or we can use environment variables, i.e.
   -- export SHARDMAN_BACKEND_PREFIX=shardman_node
+  -- export PGDATABASE=postgres
+  -- export PGUSER=my_user
+  -- export PGPASSWORD=user_password
   
   local pg_backend_name_prefix = os.getenv('SHARDMAN_BACKEND_PREFIX')
+  local pg_database = os.getenv('PGDATABASE')
+  local pg_user = os.getenv('PGUSER')
+  local pg_password = os.getenv('PGPASSWORD')
 
   -- backends counter init
   local picked_backend_count = -1
@@ -33,9 +39,9 @@ local function pick_backend(txn)
             local sh_node = pgmoon.new({
               host = host,
               port = port,
-              database = os.getenv('PGDATABASE'),
-              user = os.getenv('PGUSER'),
-              password = os.getenv('PGPASSWORD')
+              database = pg_database,
+              user = pg_user,
+              password = pg_password
             })
 
             -- trying to connect
